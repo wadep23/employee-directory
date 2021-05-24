@@ -49,7 +49,7 @@ async function start(data){
                 }
             }
         }
-    ])
+    ]);
     
 
     switch(employee.role){
@@ -65,7 +65,7 @@ async function start(data){
         default:
             console.log(employeeRegister);
     }
-}
+};
 
 function createManager(employee) {
     console.log(employee);
@@ -73,37 +73,86 @@ function createManager(employee) {
         type: 'input',
         name: 'officeNumber',
         message: "What is this Manager's office number?"
+    },
+    {
+        type: 'confirm',
+        name: 'addConfirm',
+        message: 'Would you like to add another Employee?',
+        default: false
     })
-    .then((employee) =>{
-        const manager = new Manager(employee.name, employee.email, employee.role, employee.officeNumber);
-            employeeRegister.push(manager);
-            console.log(manager);
+    .then((data) =>{
+        const manager = new Manager(employee.name, employee.id, employee.email, employee.role, data.officeNumber);
+        employeeRegister.push(manager);
+        console.log(`
+        --------------------------------
+        New employee added successfully!
+        --------------------------------
+        `)
+            if (data.addConfirm == true){
+                return start(employeeRegister);
+            }else{
+                console.log(employeeRegister);                
+            }
         
     })
 }
 
-function createEngineer() {
+function createEngineer(employee) {
+    console.log(employee);
     prompt({        
             type: 'input',
             name: 'github',
             message: "Enter Engineer's github username."        
     })
-    .then((data) => {
-        const engineer = new Engineer(data);
-        employeeRegister.push(engineer);
+    console.log(`
+    --------------------------------
+    New employee added successfully!
+    --------------------------------
+    `)
+    prompt({
+        type: 'confirm',
+        name: 'addConfirm',
+        message: 'Would you like to add another Employee?',
+        default: false
     })
-}
+    .then((data) => {
+        const engineer = new Engineer(employee.name, employee.id, employee.email, employee.role, data.github);
+        employeeRegister.push(engineer);
+        if (data.addConfirm){
+            return start(employeeRegister);
+        }else{
+            console.log(employeeRegister);                
+        }        
+    });
+};
 
-function createIntern() {
+function createIntern(employee) {
     prompt({
         type: 'input',
         name: 'school',
         message: 'What school does(did) intern attend?'
     })
-    .then((data) => {
-        const intern = new Intern(data);
-        employeeRegister.push(intern);        
+    console.log(`
+    --------------------------------
+    New employee added successfully!
+    --------------------------------
+    `)
+    prompt({
+        type: 'confirm',
+        name: 'addConfirm',
+        message: 'Would you like to add another Employee?',
+        default: false
     })
-}
+    .then((data) => {
+        const intern = new Intern(employee.name, employee.id, employee.email, employee.role, data.school);
+        employeeRegister.push(intern);
+        if (data.addConfirm){
+            return start(employeeRegister);
+        }else{
+            console.log(employeeRegister);                
+        }        
+    });
+};
+
 
 start();
