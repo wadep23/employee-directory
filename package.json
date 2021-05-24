@@ -1,0 +1,40 @@
+{
+  "name": "employee-directory",
+  "version": "1.0.0",
+  "description": "An application to generate an html for an employee directory that allows adding employees and interns.",
+  "main": "app.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wadep23/employee-directory.git"
+  },
+  "keywords": [
+    "Emplyee",
+    "Directory",
+    "Node.js",
+    "npm",
+    "Employee",
+    "Management",
+    "staff",
+    "support"
+  ],
+  "author": "Wade Facer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wadep23/employee-directory/issues"
+  },
+  "homepage": "https://github.com/wadep23/employee-directory#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "inquirer": "^8.1.0",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "jest": "^26.6.3"
+  }
+}
