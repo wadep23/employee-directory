@@ -68,17 +68,10 @@ async function start(data){
 };
 
 function createManager(employee) {
-    console.log(employee);
     prompt({
         type: 'input',
         name: 'officeNumber',
-        message: "What is this Manager's office number?"
-    },
-    {
-        type: 'confirm',
-        name: 'addConfirm',
-        message: 'Would you like to add another Employee?',
-        default: false
+        message: "What is this Manager's office number?"    
     })
     .then((data) =>{
         const manager = new Manager(employee.name, employee.id, employee.email, employee.role, data.officeNumber);
@@ -88,13 +81,28 @@ function createManager(employee) {
         New employee added successfully!
         --------------------------------
         `)
-            if (data.addConfirm == true){
+        console.log(data.addConfirm);
+        // if (data.addConfirm == true){
+            //     return start(employeeRegister);
+            // }else{
+                //     console.log(employeeRegister);                
+                // }
+                
+    })    
+    .then((data) =>{ prompt({
+        type: 'confirm',
+        name: 'addConfirm',
+        message: 'Would you like to add another Employee?',
+        default: false
+    })
+    .then((data) => {
+        if (data.addConfirm == true){
                 return start(employeeRegister);
             }else{
-                console.log(employeeRegister);                
-            }
-        
+                    console.log(employeeRegister);                
+                }
     })
+    
 }
 
 function createEngineer(employee) {
