@@ -7,7 +7,7 @@ const generatePage = require('./src/generate-page');
 const employeeRegister = [];
 
 console.log('Initiated application')
-async function start(){
+async function start(data){
 
     console.log(`
     ==============================
@@ -67,14 +67,15 @@ async function start(){
     }
 }
 
-function createManager() {
+function createManager(employee) {
+    console.log(employee);
     prompt({
         type: 'input',
         name: 'officeNumber',
         message: "What is this Manager's office number?"
     })
-    .then((data) =>{
-        const manager = new Manager(data);
+    .then((employee) =>{
+        const manager = new Manager(employee.name, employee.email, employee.role, employee.officeNumber);
             employeeRegister.push(manager);
             console.log(manager);
         
